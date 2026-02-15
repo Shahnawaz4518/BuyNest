@@ -1,0 +1,114 @@
+<!-- <mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <div class="p-6">
+      <h2 class="text-lg text-gray-900">Categories</h2>
+      <mat-nav-list>
+        @for (cat of categories(); track cat){
+          <mat-list-item [activated]="cat === category()" class="my-2" [routerLink]="['/products', cat]">
+            <span matListItemTitle class="font-medium" 
+            [class]="cat === category() ? 'text-white': null">
+              {{ cat | titlecase }}
+            </span>
+          </mat-list-item>
+        }
+      </mat-nav-list>
+
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="bg-gray-100 p-6">
+      <h1 class="text-2xl font-bold text-gray-900 mb-1 h-full ml-15">
+    {{ category() | titlecase }}
+  </h1>
+  <p class="text-base text-gray-600 mb-6">
+    {{filteredProducts().length}} products found
+
+  </p>
+
+  <div class="max-w-[1400px] mx-auto px-4">
+    <div class="grid grid-cols-5 gap-6">
+
+      @for (product of filteredProducts(); track product.id) {
+
+        <app-product-card [product]="product" />
+
+      }
+
+    </div>
+     </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+
+
+<!-- <div class="bg-gray-100 p-6">
+
+  <h1 class="text-2xl font-bold text-gray-900 mb-6 h-full ml-15">
+    {{ category() }}
+  </h1>
+
+  <div class="max-w-[1400px] mx-auto px-4">
+    <div class="grid grid-cols-5 gap-6">
+
+      @for (product of filteredProducts(); track product.id) {
+
+        <app-product-card [product]="product" />
+
+      }
+
+    </div>
+  </div>
+
+</div>
+ -->
+
+ <mat-sidenav-container class="h-screen">
+
+  <mat-sidenav mode="side" opened="true" class="w-64 bg-white border-r border-gray-200">
+    <div class="p-6">
+      <h2 class="text-lg font-semibold text-gray-800 mb-4">Categories</h2>
+
+      <mat-nav-list>
+        @for (cat of categories(); track cat){
+          <mat-list-item
+            [activated]="cat === category()"
+            class="my-2 rounded-md hover:bg-gray-100 transition-all duration-200"
+            [routerLink]="['/products', cat]"
+          >
+            <span
+              matListItemTitle
+              class="font-medium"
+              [class]="cat === category() ? 'text-white bg-blue-600 rounded-md px-3 py-2 block' : 'text-gray-800 px-3 py-2 block'"
+            >
+              {{ cat | titlecase }}
+            </span>
+          </mat-list-item>
+        }
+      </mat-nav-list>
+
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="bg-gray-100 p-8">
+
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">
+      {{ category() | titlecase }}
+    </h1>
+
+    <p class="text-gray-600 mb-8">
+      {{ filteredProducts().length }} products found
+    </p>
+
+    <div class="max-w-[1400px] mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+
+        @for (product of filteredProducts(); track product.id) {
+          <app-product-card [product]="product" />
+        }
+
+      </div>
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

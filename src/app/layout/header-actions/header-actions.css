@@ -1,0 +1,10 @@
+.logo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;          /* Fix overflow */
+  border-radius: 6px;
+  overflow: hidden;
+
+  background-color: #000;     /* Background for blend */
+  mix-blend-mode: multiply;   /* Burn-like blend effect */
+}

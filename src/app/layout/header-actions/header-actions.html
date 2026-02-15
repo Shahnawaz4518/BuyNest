@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" class="w-full py-2 shadow-lg">
+  <div class="max-w-[1200px] mx-auto w-full flex items-center justify-between">
+
+    <!-- LOGO -->
+    <img style="width: 100px; height: 100px;"
+      src="https://cdn.dribbble.com/userupload/17039932/file/original-983633d1f6de58f5d871f174ff34f057.jpg?resize=200x0"
+      alt="Logo"
+      class="logo overflow-hidden object-cover"
+    />
+
+    <!-- RIGHT SIDE ICONS -->
+    <div class="flex items-center gap-3">
+
+      <!-- Wishlist -->
+      <button matIconButton routerLink="/wishlist">
+        <mat-icon>favorite</mat-icon>
+      </button>
+
+      <!-- Cart -->
+      <button matIconButton routerLink="/cart">
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+
+      <!-- SIGN IN / SIGN UP -->
+      <button class="bg-blue-300!" matButton>Sign In</button>
+
+      <button class="bg-blue-300!" matButton> Sign Up </button>
+
+    </div>
+  </div>
+</mat-toolbar>
+
