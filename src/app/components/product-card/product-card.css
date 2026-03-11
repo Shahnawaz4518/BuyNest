@@ -1,0 +1,249 @@
+/* ============================================================
+   BuyNest Product Card — Industrial Dark
+   Card-specific styles only. Shared utilities in styles.css.
+   ============================================================ */
+
+:host {
+    display: block;
+    height: 100%;
+}
+
+/* ── Card ── */
+.bn-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition:
+        transform var(--transition-bounce),
+        box-shadow var(--transition-base),
+        border-color var(--transition-base);
+    animation: fadeInUp 0.45s ease both;
+}
+
+.bn-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-strong);
+}
+
+.bn-card--wishlisted {
+    border-color: rgba(244, 63, 94, 0.32);
+    box-shadow: var(--shadow-card), 0 0 0 1.5px rgba(244, 63, 94, 0.18);
+}
+
+/* ── Image Wrapper ── */
+.bn-card__img-wrap {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    background: var(--color-surface-2);
+    flex-shrink: 0;
+}
+
+.bn-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.bn-card:hover .bn-card__img {
+    transform: scale(1.07);
+}
+
+/* ── Stock Badge (positioned absolutely) ── */
+.bn-card__stock-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* ── Wishlist Button ── */
+.bn-card__wish-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-xs);
+    background: rgba(20, 20, 26, 0.82);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform var(--transition-bounce), background var(--transition-base), border-color var(--transition-base);
+    z-index: 2;
+}
+
+.bn-card__wish-btn .material-icons {
+    font-size: 16px;
+    color: var(--color-muted);
+    transition: color var(--transition-base);
+}
+
+.bn-card__wish-btn:hover {
+    background: rgba(244, 63, 94, 0.15);
+    border-color: rgba(244, 63, 94, 0.40);
+    transform: scale(1.12);
+}
+
+.bn-card__wish-btn:hover .material-icons {
+    color: var(--color-secondary);
+}
+
+.bn-card__wish-btn--active {
+    background: rgba(244, 63, 94, 0.14);
+    border-color: rgba(244, 63, 94, 0.38);
+}
+
+.bn-card__wish-btn--active .material-icons {
+    color: var(--color-secondary);
+    animation: heartPop 0.35s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+/* ── Card Body ── */
+.bn-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 14px 16px 16px;
+    gap: 7px;
+}
+
+/* ── Name ── */
+.bn-card__name {
+    font-size: 0.93rem;
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ── Description ── */
+.bn-card__desc {
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+}
+
+/* ── Rating ── */
+.bn-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.bn-card__stars {
+    display: flex;
+    gap: 1px;
+}
+
+.bn-star {
+    font-size: 13px;
+    color: var(--color-surface-2);
+}
+
+.bn-star--filled {
+    color: var(--color-warning);
+}
+
+.bn-card__review-count {
+    font-size: 0.72rem;
+    color: var(--color-muted);
+}
+
+/* ── Footer ── */
+.bn-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-border);
+}
+
+/* ── Price ── */
+.bn-card__price {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+}
+
+.bn-card__price-symbol {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+}
+
+.bn-card__price-value {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-primary-light);
+    letter-spacing: -0.4px;
+}
+
+/* ── Cart button (compact) ── */
+.bn-card__cart-btn {
+    min-width: 0;
+    flex-shrink: 0;
+}
+
+/* ── Staggered Entrance ── */
+:host:nth-child(1) .bn-card {
+    animation-delay: 0.04s;
+}
+
+:host:nth-child(2) .bn-card {
+    animation-delay: 0.08s;
+}
+
+:host:nth-child(3) .bn-card {
+    animation-delay: 0.12s;
+}
+
+:host:nth-child(4) .bn-card {
+    animation-delay: 0.16s;
+}
+
+:host:nth-child(5) .bn-card {
+    animation-delay: 0.20s;
+}
+
+:host:nth-child(6) .bn-card {
+    animation-delay: 0.24s;
+}
+
+:host:nth-child(7) .bn-card {
+    animation-delay: 0.28s;
+}
+
+:host:nth-child(8) .bn-card {
+    animation-delay: 0.32s;
+}
+
+:host:nth-child(9) .bn-card {
+    animation-delay: 0.36s;
+}
+
+:host:nth-child(10) .bn-card {
+    animation-delay: 0.40s;
+}

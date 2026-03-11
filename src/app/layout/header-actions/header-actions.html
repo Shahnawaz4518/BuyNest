@@ -1,0 +1,49 @@
+<nav class="bn-navbar">
+  <div class="bn-navbar__inner">
+
+    <!-- Brand -->
+    <a routerLink="/products/all" class="bn-navbar__brand" title="BuyNest Home">
+      <img class="bn-navbar__logo"
+        src="https://cdn.dribbble.com/userupload/17039932/file/original-983633d1f6de58f5d871f174ff34f057.jpg?resize=200x0"
+        alt="BuyNest Logo" />
+      <span class="bn-navbar__brand-name">Buy<span class="bn-navbar__brand-accent">Nest</span></span>
+    </a>
+
+    <!-- Search -->
+    <div class="bn-navbar__search">
+      <span class="material-icons bn-navbar__search-icon">search</span>
+      <input class="bn-navbar__search-input" type="search" placeholder="Search products, brands…"
+        aria-label="Search products" (input)="onSearchInput($event)" />
+    </div>
+
+    <!-- Right Actions -->
+    <div class="bn-navbar__actions">
+
+      <!-- Wishlist -->
+      <button class="bn-nav-icon-btn" routerLink="/wishlist" title="My Wishlist" aria-label="Wishlist">
+        <span class="material-icons">favorite</span>
+        @if (wishlist.count() > 0) {
+        <span class="bn-nav-badge bn-nav-badge--wish">{{ wishlist.count() }}</span>
+        }
+      </button>
+
+      <!-- Cart -->
+      <button class="bn-nav-icon-btn" routerLink="/cart" title="Shopping Cart" aria-label="Cart">
+        <span class="material-icons">shopping_cart</span>
+        @if (cart.count() > 0) {
+        <span class="bn-nav-badge bn-nav-badge--cart">{{ cart.count() }}</span>
+        }
+      </button>
+
+      <!-- Divider -->
+      <div class="bn-navbar__divider"></div>
+
+      <!-- Auth -->
+      <div class="bn-navbar__auth">
+        <button class="bn-btn bn-btn--ghost bn-btn--sm">Sign In</button>
+        <button class="bn-btn bn-btn--primary bn-btn--sm">Sign Up</button>
+      </div>
+
+    </div>
+  </div>
+</nav>

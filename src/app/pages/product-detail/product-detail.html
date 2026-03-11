@@ -1,0 +1,110 @@
+@if (product(); as p) {
+<div class="pd-page">
+
+    <!-- Breadcrumb -->
+    <nav class="pd-breadcrumb">
+        <a routerLink="/products/all">All Products</a>
+        <span class="material-icons" style="font-size:15px;">chevron_right</span>
+        <a [routerLink]="['/products', p.category.toLowerCase()]">{{ p.category }}</a>
+        <span class="material-icons" style="font-size:15px;">chevron_right</span>
+        <span class="pd-breadcrumb__current">{{ p.name }}</span>
+    </nav>
+
+    <div class="pd-layout">
+
+        <!-- Image Panel -->
+        <div class="pd-image-panel">
+            <div class="pd-image-wrap">
+                <img class="pd-image" [src]="p.imageUrl" [alt]="p.name" />
+                <span class="bn-badge pd-image__badge" [class.bn-badge--success]="p.inStock"
+                    [class.bn-badge--danger]="!p.inStock">
+                    {{ p.inStock ? '● In Stock' : '○ Out of Stock' }}
+                </span>
+            </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div class="pd-info">
+            <span class="bn-tag">{{ p.category }}</span>
+            <h1 class="pd-info__name">{{ p.name }}</h1>
+
+            <!-- Rating -->
+            <div class="pd-info__rating">
+                <span class="pd-stars">
+                    @for (filled of starsArray; track $index) {
+                    <span class="bn-star" [class.bn-star--filled]="filled">★</span>
+                    }
+                </span>
+                <span class="pd-info__rating-num">{{ p.rating }}</span>
+                <span class="pd-info__rating-count">({{ p.reviewCount }} reviews)</span>
+            </div>
+
+            <div class="pd-info__divider"></div>
+
+            <!-- Price -->
+            <div class="pd-info__price-row">
+                <span class="pd-info__currency">₹</span>
+                <span class="pd-info__price">{{ p.price | number }}</span>
+                <span class="pd-info__original">₹{{ (p.price * 1.12) | number:'1.0-0' }}</span>
+                <span class="pd-info__discount">8% OFF</span>
+            </div>
+
+            <!-- Description -->
+            <p class="pd-info__desc">{{ p.description }}</p>
+
+            <!-- Features -->
+            <ul class="pd-info__features">
+                <li><span class="material-icons">local_shipping</span> Free delivery on orders above ₹500</li>
+                <li><span class="material-icons">replay</span> 30-day easy returns</li>
+                <li><span class="material-icons">verified_user</span> 1-year warranty included</li>
+                <li><span class="material-icons">security</span> Secure Stripe payment</li>
+            </ul>
+
+            <div class="pd-info__divider"></div>
+
+            <!-- Actions -->
+            <div class="pd-info__actions">
+                @if (inCart) {
+                <div class="bn-qty-control pd-qty">
+                    <button class="bn-qty-btn bn-qty-btn--md" (click)="onDecrement()" aria-label="Decrease">−</button>
+                    <span class="bn-qty-value">{{ cartQty }}</span>
+                    <button class="bn-qty-btn bn-qty-btn--md" (click)="onIncrement()" aria-label="Increase">+</button>
+                </div>
+                } @else {
+                <button class="bn-btn bn-btn--primary bn-btn--lg pd-info__cart-btn" (click)="onAddToCart()"
+                    [disabled]="!p.inStock">
+                    <span class="material-icons" style="font-size:20px;">shopping_cart</span>
+                    {{ p.inStock ? 'Add to Cart' : 'Out of Stock' }}
+                </button>
+                }
+
+                <button class="bn-icon-btn pd-info__wish-btn" [class.pd-info__wish-btn--active]="isWishlisted"
+                    (click)="onWishlistToggle()" [title]="isWishlisted ? 'Remove from wishlist' : 'Save to wishlist'">
+                    <span class="material-icons" style="font-size:22px;">{{ isWishlisted ? 'favorite' :
+                        'favorite_border' }}</span>
+                </button>
+            </div>
+
+            @if (inCart) {
+            <a routerLink="/cart" class="bn-btn bn-btn--outline bn-btn--full pd-info__view-cart">
+                <span class="material-icons" style="font-size:18px;">visibility</span>
+                View Cart
+            </a>
+            }
+
+            <!-- Product ID -->
+            <p class="pd-info__sku">Product ID: <strong>{{ p.id }}</strong></p>
+        </div>
+
+    </div>
+</div>
+} @else {
+<div class="bn-empty-state">
+    <div class="bn-empty-state__icon-wrap">
+        <span class="material-icons bn-empty-state__icon">search_off</span>
+    </div>
+    <h2 class="bn-empty-state__title">Product not found</h2>
+    <p class="bn-empty-state__desc">The product you're looking for doesn't exist.</p>
+    <a routerLink="/products/all" class="bn-btn bn-btn--primary bn-btn--lg">Back to Shop</a>
+</div>
+}

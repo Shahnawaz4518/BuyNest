@@ -1,0 +1,61 @@
+<div class="bn-layout">
+
+  <!-- Sidebar -->
+  <aside class="bn-sidebar">
+    <div class="bn-sidebar__header">
+      <span class="material-icons bn-sidebar__icon">grid_view</span>
+      <h2 class="bn-sidebar__title">Categories</h2>
+    </div>
+    <nav class="bn-sidebar__nav">
+      @for (cat of categories; track cat) {
+      <a class="bn-sidebar__item" [class.bn-sidebar__item--active]="cat === category()"
+        [routerLink]="['/products', cat]">
+        <span class="bn-sidebar__item-label">{{ cat | titlecase }}</span>
+        <span class="material-icons bn-sidebar__item-arrow">chevron_right</span>
+      </a>
+      }
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="bn-main">
+
+    <!-- Page Header (uses global .bn-page-header) -->
+    <div class="bn-page-header">
+      <div>
+        <h1 class="bn-page-header__title">{{ category() | titlecase }}</h1>
+        <p class="bn-page-header__subtitle">
+          <span class="bn-page-header__count">{{ filteredProducts().length }}</span> products found
+        </p>
+      </div>
+      <div class="bn-sort-group">
+        <label class="bn-sort-label" for="sort-select">Sort by</label>
+        <select id="sort-select" class="bn-sort-select">
+          <option>Featured</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Newest</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="bn-grid">
+      @for (product of filteredProducts(); track product.id) {
+      <app-product-card [product]="product" />
+      }
+    </div>
+
+    <!-- Empty State (uses global .bn-empty-state) -->
+    @if (filteredProducts().length === 0) {
+    <div class="bn-empty-state">
+      <div class="bn-empty-state__icon-wrap">
+        <span class="material-icons bn-empty-state__icon">search_off</span>
+      </div>
+      <h3 class="bn-empty-state__title">No products found</h3>
+      <p class="bn-empty-state__desc">Try selecting a different category.</p>
+    </div>
+    }
+
+  </main>
+</div>

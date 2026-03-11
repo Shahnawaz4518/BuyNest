@@ -1,0 +1,250 @@
+/* ============================================================
+   BuyNest Footer — Industrial Dark
+   ============================================================ */
+
+.bn-footer {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+}
+
+.bn-footer__inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-xl);
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.6fr;
+    gap: var(--space-xl);
+}
+
+/* ── Brand Column ── */
+.bn-footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: var(--space-md);
+}
+
+.bn-footer__logo {
+    width: 36px;
+    height: 36px;
+    background: var(--color-primary);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+.bn-footer__brand-name {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -0.4px;
+}
+
+.bn-footer__accent {
+    color: var(--color-primary-light);
+}
+
+.bn-footer__tagline {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.bn-footer__social {
+    display: flex;
+    gap: 8px;
+}
+
+.bn-footer__social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: background var(--transition-base), color var(--transition-base), border-color var(--transition-base);
+}
+
+.bn-footer__social-btn:hover {
+    background: rgba(79, 70, 229, 0.14);
+    border-color: var(--color-border-strong);
+    color: var(--color-primary-light);
+}
+
+.bn-footer__social-btn .material-icons {
+    font-size: 17px;
+}
+
+/* ── Column ── */
+.bn-footer__heading {
+    font-size: 0.70rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+}
+
+.bn-footer__links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.bn-footer__links a {
+    font-size: 0.855rem;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color var(--transition-base), padding-left var(--transition-base);
+    display: block;
+}
+
+.bn-footer__links a:hover {
+    color: var(--color-primary-light);
+    padding-left: 4px;
+}
+
+/* ── Newsletter ── */
+.bn-footer__newsletter-text {
+    font-size: 0.82rem;
+    color: var(--color-muted);
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
+}
+
+.bn-footer__newsletter-form {
+    display: flex;
+    gap: 8px;
+    margin-bottom: var(--space-md);
+}
+
+.bn-footer__newsletter-input {
+    flex: 1;
+    height: 36px;
+    background: var(--color-surface-2);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 0.82rem;
+    padding: 0 12px;
+    outline: none;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+    min-width: 0;
+}
+
+.bn-footer__newsletter-input::placeholder {
+    color: var(--color-muted);
+}
+
+.bn-footer__newsletter-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+}
+
+/* ── Payment Badges ── */
+.bn-footer__payments {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.bn-payment-badge {
+    padding: 3px 8px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    border-radius: var(--radius-xs);
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    color: var(--color-muted);
+}
+
+.bn-payment-badge--stripe {
+    background: rgba(99, 91, 255, 0.12);
+    border-color: rgba(99, 91, 255, 0.30);
+    color: #a5b4fc;
+}
+
+/* ── Bottom Bar ── */
+.bn-footer__bottom {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-bg-2);
+}
+
+.bn-footer__bottom-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: var(--space-md) var(--space-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.bn-footer__copy {
+    font-size: 0.78rem;
+    color: var(--color-muted);
+}
+
+.bn-footer__bottom-links {
+    display: flex;
+    gap: var(--space-lg);
+}
+
+.bn-footer__bottom-links a {
+    font-size: 0.78rem;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.bn-footer__bottom-links a:hover {
+    color: var(--color-primary-light);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+    .bn-footer__inner {
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    }
+
+    .bn-footer__col--newsletter {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .bn-footer__inner {
+        grid-template-columns: 1fr 1fr;
+        padding: var(--space-xl) var(--space-md);
+        gap: var(--space-lg);
+    }
+
+    .bn-footer__col--brand {
+        grid-column: 1 / -1;
+    }
+
+    .bn-footer__col--newsletter {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 480px) {
+    .bn-footer__inner {
+        grid-template-columns: 1fr;
+    }
+}

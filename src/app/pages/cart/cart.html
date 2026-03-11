@@ -1,0 +1,128 @@
+<div class="cart-page">
+
+    <!-- Page Header -->
+    <div class="cart-page__topbar">
+        <div class="bn-section-content cart-page__topbar-inner">
+            <button class="bn-icon-btn" routerLink="/products/all" title="Back to shop" aria-label="Back">
+                <span class="material-icons" style="font-size:20px;">arrow_back</span>
+            </button>
+            <div>
+                <h1 class="cart-page__title">Shopping Cart</h1>
+                @if (cart.count() > 0) {
+                <p class="cart-page__subtitle">{{ cart.count() }} {{ cart.count() === 1 ? 'item' : 'items' }} in your
+                    cart</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Empty Cart (global .bn-empty-state) -->
+    @if (cart.isEmpty()) {
+    <div class="bn-empty-state">
+        <div class="bn-empty-state__icon-wrap">
+            <span class="material-icons bn-empty-state__icon">shopping_cart</span>
+        </div>
+        <h2 class="bn-empty-state__title">Your cart is empty</h2>
+        <p class="bn-empty-state__desc">Looks like you haven't added anything yet.</p>
+        <a routerLink="/products/all" class="bn-btn bn-btn--primary bn-btn--lg">
+            <span class="material-icons" style="font-size:18px;">explore</span>
+            Start Shopping
+        </a>
+    </div>
+    }
+
+    <!-- Cart Content -->
+    @if (!cart.isEmpty()) {
+    <div class="cart-layout bn-section-content">
+
+        <!-- Items List -->
+        <div class="cart-items">
+            @for (item of cart.items(); track item.product.id) {
+            <div class="cart-item">
+
+                <!-- Image -->
+                <div class="cart-item__img-wrap">
+                    <img class="cart-item__img" [src]="item.product.imageUrl" [alt]="item.product.name" />
+                </div>
+
+                <!-- Info -->
+                <div class="cart-item__info">
+                    <span class="bn-tag">{{ item.product.category }}</span>
+                    <h3 class="cart-item__name">{{ item.product.name }}</h3>
+                    <p class="cart-item__desc">{{ item.product.description }}</p>
+                    <div class="cart-item__unit-price">₹{{ item.product.price | number }} each</div>
+                </div>
+
+                <!-- Controls -->
+                <div class="cart-item__controls">
+                    <!-- Qty (global .bn-qty-control) -->
+                    <div class="bn-qty-control">
+                        <button class="bn-qty-btn bn-qty-btn--md" (click)="decrement(item.product.id)"
+                            aria-label="Decrease">−</button>
+                        <span class="bn-qty-value">{{ item.quantity }}</span>
+                        <button class="bn-qty-btn bn-qty-btn--md" (click)="increment(item.product)"
+                            aria-label="Increase">+</button>
+                    </div>
+
+                    <!-- Item Total -->
+                    <div class="cart-item__total">₹{{ (item.product.price * item.quantity) | number }}</div>
+
+                    <!-- Remove -->
+                    <button class="bn-icon-btn cart-item__remove" (click)="remove(item.product.id)" title="Remove item"
+                        aria-label="Remove item">
+                        <span class="material-icons"
+                            style="font-size:18px;color:var(--color-danger);">delete_outline</span>
+                    </button>
+                </div>
+
+            </div>
+            }
+        </div>
+
+        <!-- Order Summary -->
+        <div class="cart-summary">
+            <h2 class="cart-summary__title">Order Summary</h2>
+
+            <div class="cart-summary__rows">
+                <div class="cart-summary__row">
+                    <span>Subtotal ({{ cart.count() }} items)</span>
+                    <span>₹{{ cart.total() | number }}</span>
+                </div>
+                <div class="cart-summary__row">
+                    <span>Delivery</span>
+                    <span class="cart-summary__free">FREE</span>
+                </div>
+                <div class="cart-summary__row cart-summary__row--discount">
+                    <span>You save</span>
+                    <span>₹{{ savings() | number }}</span>
+                </div>
+            </div>
+
+            <div class="cart-summary__divider"></div>
+
+            <div class="cart-summary__row cart-summary__row--total">
+                <span>Total</span>
+                <span>₹{{ cart.total() | number }}</span>
+            </div>
+
+            <!-- Actions (global .bn-btn) -->
+            <a routerLink="/checkout" class="bn-btn bn-btn--primary bn-btn--full bn-btn--lg cart-summary__checkout-btn">
+                <span class="material-icons" style="font-size:18px;">lock</span>
+                Proceed to Checkout
+            </a>
+
+            <button class="bn-btn bn-btn--danger bn-btn--full cart-summary__clear-btn" (click)="clearCart()">
+                <span class="material-icons" style="font-size:17px;">delete_sweep</span>
+                Clear Cart
+            </button>
+
+            <p class="cart-summary__note">
+                <span class="material-icons" style="font-size:14px;">verified_user</span>
+                Secure checkout — SSL encrypted
+            </p>
+        </div>
+
+    </div>
+    }
+
+</div>

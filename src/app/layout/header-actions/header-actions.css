@@ -1,0 +1,226 @@
+/* ============================================================
+   BuyNest Navbar — Industrial Dark
+   ============================================================ */
+
+.bn-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  width: 100%;
+  height: var(--navbar-h);
+  background: rgba(15, 15, 19, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  animation: fadeIn 0.3s ease;
+}
+
+.bn-navbar__inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 var(--space-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* ── Brand ── */
+.bn-navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.bn-navbar__logo {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 1.5px solid var(--color-border-strong);
+  transition: box-shadow var(--transition-base), transform var(--transition-bounce);
+}
+
+.bn-navbar__brand:hover .bn-navbar__logo {
+  box-shadow: var(--shadow-glow);
+  transform: scale(1.06);
+}
+
+.bn-navbar__brand-name {
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: var(--color-text);
+}
+
+.bn-navbar__brand-accent {
+  color: var(--color-primary-light);
+}
+
+/* ── Search ── */
+.bn-navbar__search {
+  flex: 1;
+  max-width: 520px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.bn-navbar__search-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 19px;
+  color: var(--color-muted);
+  pointer-events: none;
+  transition: color var(--transition-base);
+}
+
+.bn-navbar__search-input {
+  width: 100%;
+  height: 38px;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 0.875rem;
+  padding: 0 14px 0 40px;
+  outline: none;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.bn-navbar__search-input::placeholder {
+  color: var(--color-muted);
+}
+
+.bn-navbar__search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+}
+
+.bn-navbar__search-input:focus+.bn-navbar__search-icon,
+.bn-navbar__search:focus-within .bn-navbar__search-icon {
+  color: var(--color-primary-light);
+}
+
+/* ── Right Actions ── */
+.bn-navbar__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+/* ── Nav Icon Buttons ── */
+.bn-nav-icon-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition:
+    color var(--transition-base),
+    background var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-bounce);
+}
+
+.bn-nav-icon-btn .material-icons {
+  font-size: 20px;
+}
+
+.bn-nav-icon-btn:hover {
+  color: var(--color-primary-light);
+  background: rgba(79, 70, 229, 0.14);
+  border-color: var(--color-border-strong);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.10);
+  transform: scale(1.07);
+}
+
+.bn-nav-icon-btn:active {
+  transform: scale(0.93);
+}
+
+/* ── Nav Badge ── */
+.bn-nav-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.65rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid var(--color-bg);
+  line-height: 1;
+  animation: heartPop 0.3s ease;
+}
+
+.bn-nav-badge--cart {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.bn-nav-badge--wish {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+/* ── Divider ── */
+.bn-navbar__divider {
+  width: 1px;
+  height: 24px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+/* ── Auth ── */
+.bn-navbar__auth {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .bn-navbar__search {
+    max-width: 200px;
+  }
+
+  .bn-navbar__brand-name {
+    display: none;
+  }
+
+  .bn-navbar__auth {
+    display: none;
+  }
+
+  .bn-navbar__divider {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .bn-navbar__inner {
+    padding: 0 var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .bn-navbar__search {
+    max-width: 140px;
+  }
+}

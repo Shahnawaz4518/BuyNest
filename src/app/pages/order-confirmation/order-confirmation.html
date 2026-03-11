@@ -1,0 +1,93 @@
+@if (order) {
+<div class="oc-page">
+    <!-- Success Hero -->
+    <div class="oc-hero">
+        <div class="oc-hero__icon-wrap">
+            <span class="material-icons oc-hero__check">check_circle</span>
+        </div>
+        <h1 class="oc-hero__title">Order Placed!</h1>
+        <p class="oc-hero__subtitle">
+            Thank you for your purchase. Your order <strong>{{ order.id }}</strong> has been confirmed.
+        </p>
+        <p class="oc-hero__payment">
+            <span class="material-icons" style="font-size:15px;vertical-align:middle">credit_card</span>
+            Paid with card ending ••••{{ order.paymentLast4 }}
+        </p>
+    </div>
+
+    <!-- Order Breakdown -->
+    <div class="oc-layout bn-section-content">
+
+        <!-- Items -->
+        <div class="oc-card">
+            <h2 class="oc-card__title">Items Ordered</h2>
+            <div class="oc-items">
+                @for (item of order.items; track item.product.id) {
+                <div class="oc-item">
+                    <div class="oc-item__img-wrap">
+                        <img class="oc-item__img" [src]="item.product.imageUrl" [alt]="item.product.name" />
+                    </div>
+                    <div class="oc-item__info">
+                        <span class="bn-tag">{{ item.product.category }}</span>
+                        <h3 class="oc-item__name">{{ item.product.name }}</h3>
+                        <p class="oc-item__qty">Qty: {{ item.quantity }}</p>
+                    </div>
+                    <div class="oc-item__price">₹{{ (item.product.price * item.quantity) | number }}</div>
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- Summary + Next Steps -->
+        <div class="oc-sidebar">
+            <!-- Summary -->
+            <div class="oc-card">
+                <h2 class="oc-card__title">Payment Summary</h2>
+                <div class="oc-summary-rows">
+                    <div class="oc-summary-row"><span>Subtotal</span><span>₹{{ order.subtotal | number }}</span></div>
+                    <div class="oc-summary-row"><span>Delivery</span><span class="oc-free">FREE</span></div>
+                    <div class="oc-summary-row oc-summary-row--total"><span>Total Paid</span><span>₹{{ order.total |
+                            number }}</span></div>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="oc-card oc-next-steps">
+                <h2 class="oc-card__title">What's Next?</h2>
+                <ul class="oc-steps">
+                    <li class="oc-step">
+                        <span class="material-icons oc-step__icon">email</span>
+                        <div><strong>Confirmation Email</strong>
+                            <p>Sent to your registered email</p>
+                        </div>
+                    </li>
+                    <li class="oc-step">
+                        <span class="material-icons oc-step__icon">inventory_2</span>
+                        <div><strong>Order Processing</strong>
+                            <p>1–2 business days</p>
+                        </div>
+                    </li>
+                    <li class="oc-step">
+                        <span class="material-icons oc-step__icon">local_shipping</span>
+                        <div><strong>Delivery</strong>
+                            <p>3–5 business days</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="oc-actions">
+                    <a routerLink="/products/all" class="bn-btn bn-btn--primary bn-btn--full">
+                        <span class="material-icons" style="font-size:18px;">storefront</span>
+                        Continue Shopping
+                    </a>
+                    <a routerLink="/wishlist" class="bn-btn bn-btn--ghost bn-btn--full">
+                        <span class="material-icons" style="font-size:18px;">favorite</span>
+                        View Wishlist
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+}

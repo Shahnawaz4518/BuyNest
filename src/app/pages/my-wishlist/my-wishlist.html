@@ -1,0 +1,86 @@
+<section class="bn-wishlist">
+
+    <!-- Hero Header -->
+    <div class="bn-wishlist__header">
+        <div class="bn-wishlist__header-inner">
+            <div class="bn-wishlist__header-icon-wrap">
+                <span class="material-icons bn-wishlist__header-icon">favorite</span>
+            </div>
+            <div>
+                <h1 class="bn-wishlist__title">My Wishlist</h1>
+                <p class="bn-wishlist__subtitle">{{ wishlist.count() }} saved {{ wishlist.count() === 1 ? 'item' :
+                    'items' }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Empty State (global .bn-empty-state) -->
+    @if (wishlist.isEmpty()) {
+    <div class="bn-empty-state">
+        <div class="bn-empty-state__icon-wrap">
+            <span class="material-icons bn-empty-state__icon">favorite_border</span>
+        </div>
+        <h2 class="bn-empty-state__title">Your wishlist is empty</h2>
+        <p class="bn-empty-state__desc">Tap the ♥ heart on any product to save it here.</p>
+        <a routerLink="/products/all" class="bn-btn bn-btn--primary bn-btn--lg">
+            <span class="material-icons" style="font-size:18px;">explore</span>
+            Explore Products
+        </a>
+    </div>
+    }
+
+    <!-- Items -->
+    @if (!wishlist.isEmpty()) {
+    <div class="bn-wishlist__actions-bar bn-section-content">
+        <span class="bn-wishlist__count">{{ wishlist.count() }} items saved</span>
+        <button class="bn-btn bn-btn--danger bn-btn--sm" (click)="clearAll()">
+            <span class="material-icons" style="font-size:16px;">delete_sweep</span>
+            Clear All
+        </button>
+    </div>
+
+    <div class="bn-wishlist__grid bn-section-content">
+        @for (product of wishlist.items(); track product.id) {
+        <div class="bn-wish-card">
+
+            <!-- Image -->
+            <div class="bn-wish-card__img-wrap">
+                <img class="bn-wish-card__img" [src]="product.imageUrl" [alt]="product.name" />
+                <span class="bn-badge bn-wish-card__badge" [class.bn-badge--success]="product.inStock"
+                    [class.bn-badge--danger]="!product.inStock">
+                    {{ product.inStock ? 'In Stock' : 'Out of Stock' }}
+                </span>
+            </div>
+
+            <!-- Body -->
+            <div class="bn-wish-card__body">
+                <span class="bn-tag">{{ product.category }}</span>
+                <h3 class="bn-wish-card__name">{{ product.name }}</h3>
+                <p class="bn-wish-card__desc">{{ product.description }}</p>
+
+                <div class="bn-wish-card__footer">
+                    <div class="bn-wish-card__price">₹{{ product.price | number }}</div>
+
+                    <div class="bn-wish-card__actions">
+                        <!-- Add to Cart (global .bn-btn) -->
+                        <button class="bn-btn bn-btn--primary bn-btn--sm bn-wish-card__cart-btn"
+                            (click)="addToCart(product)" [disabled]="!product.inStock" title="Add to cart">
+                            <span class="material-icons" style="font-size:15px;">shopping_cart</span>
+                            {{ isInCart(product.id) ? 'In Cart' : 'Add to Cart' }}
+                        </button>
+
+                        <!-- Remove (global .bn-icon-btn) -->
+                        <button class="bn-icon-btn" (click)="removeFromWishlist(product.id)"
+                            title="Remove from wishlist" aria-label="Remove">
+                            <span class="material-icons" style="font-size:18px;color:var(--color-danger);">close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        }
+    </div>
+    }
+
+</section>

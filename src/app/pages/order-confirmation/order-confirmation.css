@@ -1,0 +1,220 @@
+/* ============================================================
+   Order Confirmation Page
+   ============================================================ */
+.oc-page {
+    min-height: calc(100vh - var(--navbar-h));
+    background: var(--color-bg);
+    animation: fadeIn 0.3s ease;
+    padding-bottom: var(--space-3xl);
+}
+
+/* ── Hero ── */
+.oc-hero {
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    text-align: center;
+    padding: var(--space-2xl) var(--space-xl);
+}
+
+.oc-hero__icon-wrap {
+    display: inline-flex;
+    margin-bottom: var(--space-md);
+}
+
+.oc-hero__check {
+    font-size: 64px;
+    color: var(--color-success);
+    animation: heartPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    filter: drop-shadow(0 0 16px rgba(34, 197, 94, 0.40));
+}
+
+.oc-hero__title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -0.5px;
+    margin-bottom: var(--space-sm);
+}
+
+.oc-hero__subtitle {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+.oc-hero__payment {
+    margin-top: var(--space-sm);
+    font-size: 0.82rem;
+    color: var(--color-muted);
+}
+
+/* ── Layout ── */
+.oc-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: var(--space-xl);
+    padding-top: var(--space-xl);
+    align-items: flex-start;
+}
+
+/* ── Card ── */
+.oc-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--space-md);
+}
+
+.oc-card__title {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* ── Items ── */
+.oc-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.oc-item {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.oc-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.oc-item__img-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-surface-2);
+    flex-shrink: 0;
+    border: 1px solid var(--color-border);
+}
+
+.oc-item__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.oc-item__info {
+    flex: 1;
+    min-width: 0;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.oc-item__name {
+    font-size: 0.93rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.oc-item__qty {
+    font-size: 0.78rem;
+    color: var(--color-muted);
+}
+
+.oc-item__price {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--color-primary-light);
+    flex-shrink: 0;
+}
+
+/* ── Summary ── */
+.oc-summary-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.oc-summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    padding: 5px 0;
+}
+
+.oc-free {
+    color: var(--color-success);
+    font-weight: 700;
+}
+
+.oc-summary-row--total {
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--color-text);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-md);
+    margin-top: var(--space-sm);
+}
+
+/* ── Next Steps ── */
+.oc-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.oc-step {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+}
+
+.oc-step__icon {
+    font-size: 22px;
+    color: var(--color-primary-light);
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.oc-step strong {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-text);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.oc-step p {
+    font-size: 0.78rem;
+    color: var(--color-muted);
+    margin: 0;
+}
+
+.oc-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .oc-layout {
+        grid-template-columns: 1fr;
+        padding: var(--space-md) var(--space-md);
+    }
+}

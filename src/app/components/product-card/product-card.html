@@ -1,0 +1,61 @@
+<div class="bn-card" [class.bn-card--wishlisted]="isWishlisted">
+
+  <!-- Image Wrapper -->
+  <div class="bn-card__img-wrap">
+    <img class="bn-card__img" [src]="product().imageUrl" [alt]="product().name" />
+
+    <!-- Wishlist Heart -->
+    <button class="bn-card__wish-btn" [class.bn-card__wish-btn--active]="isWishlisted" (click)="onWishlistToggle()"
+      [title]="isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'" aria-label="Toggle wishlist">
+      <span class="material-icons">{{ isWishlisted ? 'favorite' : 'favorite_border' }}</span>
+    </button>
+
+    <!-- Stock Badge -->
+    <span class="bn-badge bn-card__stock-badge" [class.bn-badge--success]="product().inStock"
+      [class.bn-badge--danger]="!product().inStock">
+      {{ product().inStock ? '● In Stock' : '○ Out of Stock' }}
+    </span>
+  </div>
+
+  <!-- Card Body -->
+  <div class="bn-card__body">
+    <span class="bn-tag">{{ product().category }}</span>
+    <h3 class="bn-card__name">{{ product().name }}</h3>
+    <p class="bn-card__desc">{{ product().description }}</p>
+
+    <!-- Rating -->
+    <div class="bn-card__rating">
+      <div class="bn-card__stars">
+        <span class="bn-star" [class.bn-star--filled]="product().rating >= 1">★</span>
+        <span class="bn-star" [class.bn-star--filled]="product().rating >= 2">★</span>
+        <span class="bn-star" [class.bn-star--filled]="product().rating >= 3">★</span>
+        <span class="bn-star" [class.bn-star--filled]="product().rating >= 4">★</span>
+        <span class="bn-star" [class.bn-star--filled]="product().rating >= 4.5">★</span>
+      </div>
+      <span class="bn-card__review-count">({{ product().reviewCount }})</span>
+    </div>
+
+    <!-- Footer: Price + Action -->
+    <div class="bn-card__footer">
+      <div class="bn-card__price">
+        <span class="bn-card__price-symbol">₹</span>
+        <span class="bn-card__price-value">{{ product().price | number }}</span>
+      </div>
+
+      @if (inCart) {
+      <div class="bn-qty-control">
+        <button class="bn-qty-btn" (click)="onDecrement()" aria-label="Decrease">−</button>
+        <span class="bn-qty-value">{{ cartQty }}</span>
+        <button class="bn-qty-btn" (click)="onIncrement()" aria-label="Increase">+</button>
+      </div>
+      } @else {
+      <button class="bn-btn bn-btn--primary bn-btn--sm bn-card__cart-btn" (click)="onAddToCart()"
+        [disabled]="!product().inStock" [title]="product().inStock ? 'Add to cart' : 'Out of stock'">
+        <span class="material-icons" style="font-size:15px;">shopping_cart</span>
+        Add
+      </button>
+      }
+    </div>
+  </div>
+
+</div>

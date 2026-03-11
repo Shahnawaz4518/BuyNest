@@ -1,0 +1,165 @@
+<div class="ck-page">
+
+    <!-- Page Header -->
+    <div class="ck-header">
+        <div class="bn-section-content ck-header__inner">
+            <a routerLink="/cart" class="bn-icon-btn" title="Back to cart">
+                <span class="material-icons" style="font-size:20px;">arrow_back</span>
+            </a>
+            <div>
+                <h1 class="ck-header__title">Secure Checkout</h1>
+                <p class="ck-header__subtitle">
+                    <span class="material-icons" style="font-size:14px;vertical-align:middle">lock</span>
+                    SSL Encrypted — powered by Stripe
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bn-section-content ck-layout">
+
+        <!-- Left: Payment Form -->
+        <div class="ck-form-col">
+
+            <!-- Contact Info -->
+            <div class="ck-card">
+                <h2 class="ck-card__title">
+                    <span class="ck-step">1</span> Contact Information
+                </h2>
+                <div class="ck-form-grid">
+                    <div class="ck-field">
+                        <label class="ck-label" for="ck-name">Full Name *</label>
+                        <input id="ck-name" class="ck-input" type="text" placeholder="John Doe" [(ngModel)]="name"
+                            required />
+                    </div>
+                    <div class="ck-field">
+                        <label class="ck-label" for="ck-email">Email Address *</label>
+                        <input id="ck-email" class="ck-input" type="email" placeholder="john@example.com"
+                            [(ngModel)]="email" required />
+                    </div>
+                    <div class="ck-field ck-field--full">
+                        <label class="ck-label" for="ck-phone">Phone (optional)</label>
+                        <input id="ck-phone" class="ck-input" type="tel" placeholder="+91 98765 43210" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Address -->
+            <div class="ck-card">
+                <h2 class="ck-card__title"><span class="ck-step">2</span> Delivery Address</h2>
+                <div class="ck-form-grid">
+                    <div class="ck-field ck-field--full">
+                        <label class="ck-label" for="ck-addr">Street Address</label>
+                        <input id="ck-addr" class="ck-input" type="text" placeholder="123 Main Street, Apt 4B" />
+                    </div>
+                    <div class="ck-field">
+                        <label class="ck-label" for="ck-city">City</label>
+                        <input id="ck-city" class="ck-input" type="text" placeholder="Mumbai" />
+                    </div>
+                    <div class="ck-field">
+                        <label class="ck-label" for="ck-pin">PIN Code</label>
+                        <input id="ck-pin" class="ck-input" type="text" placeholder="400001" />
+                    </div>
+                    <div class="ck-field">
+                        <label class="ck-label" for="ck-state">State</label>
+                        <input id="ck-state" class="ck-input" type="text" placeholder="Maharashtra" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment — Stripe Card -->
+            <div class="ck-card">
+                <h2 class="ck-card__title"><span class="ck-step">3</span> Payment Details</h2>
+
+                <div class="ck-stripe-badges">
+                    <span class="bn-payment-badge">VISA</span>
+                    <span class="bn-payment-badge">MC</span>
+                    <span class="bn-payment-badge">AMEX</span>
+                    <span class="bn-payment-badge bn-payment-badge--stripe">STRIPE</span>
+                </div>
+
+                <div class="ck-stripe-wrap">
+                    <!-- Stripe Card Element mounts here -->
+                    <div id="stripe-card-element" class="ck-stripe-element"></div>
+                </div>
+
+                @if (cardError) {
+                <p class="ck-card-error">
+                    <span class="material-icons" style="font-size:16px;vertical-align:middle">error_outline</span>
+                    {{ cardError }}
+                </p>
+                }
+
+                <p class="ck-test-hint">
+                    <span class="material-icons" style="font-size:14px;vertical-align:middle">info_outline</span>
+                    Test mode: use card <strong>4242 4242 4242 4242</strong>, any future date & CVC
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Right: Order Summary -->
+        <div class="ck-summary-col">
+            <div class="ck-summary">
+                <h2 class="ck-summary__title">Order Summary</h2>
+
+                <div class="ck-summary__items">
+                    @for (item of cart.items(); track item.product.id) {
+                    <div class="ck-summary__item">
+                        <div class="ck-summary__item-img-wrap">
+                            <img class="ck-summary__item-img" [src]="item.product.imageUrl" [alt]="item.product.name" />
+                            <span class="ck-summary__item-qty">{{ item.quantity }}</span>
+                        </div>
+                        <div class="ck-summary__item-info">
+                            <p class="ck-summary__item-name">{{ item.product.name }}</p>
+                            <span class="bn-tag">{{ item.product.category }}</span>
+                        </div>
+                        <div class="ck-summary__item-price">₹{{ (item.product.price * item.quantity) | number }}</div>
+                    </div>
+                    }
+                </div>
+
+                <div class="ck-summary__divider"></div>
+
+                <div class="ck-summary__rows">
+                    <div class="ck-summary__row">
+                        <span>Subtotal ({{ cart.count() }} items)</span>
+                        <span>₹{{ cart.total() | number }}</span>
+                    </div>
+                    <div class="ck-summary__row">
+                        <span>Delivery</span>
+                        <span class="ck-free">FREE</span>
+                    </div>
+                    <div class="ck-summary__row ck-summary__row--savings">
+                        <span>You save</span>
+                        <span>₹{{ savings | number }}</span>
+                    </div>
+                </div>
+
+                <div class="ck-summary__divider"></div>
+
+                <div class="ck-summary__total">
+                    <span>Total</span>
+                    <span>₹{{ cart.total() | number }}</span>
+                </div>
+
+                <button class="bn-btn bn-btn--primary bn-btn--full bn-btn--lg ck-pay-btn" (click)="onPay()"
+                    [disabled]="processing">
+                    @if (processing) {
+                    <span class="ck-spinner"></span>
+                    Processing…
+                    } @else {
+                    <span class="material-icons" style="font-size:20px;">lock</span>
+                    Pay ₹{{ cart.total() | number }}
+                    }
+                </button>
+
+                <p class="ck-secure-note">
+                    <span class="material-icons" style="font-size:14px;">verified_user</span>
+                    Payments secured by Stripe
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
